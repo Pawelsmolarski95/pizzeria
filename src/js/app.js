@@ -104,6 +104,7 @@ const app = {
     thisApp.initPages();
     thisApp.initData();
     thisApp.initCart();
+    
     thisApp.initBooking();
       
   },

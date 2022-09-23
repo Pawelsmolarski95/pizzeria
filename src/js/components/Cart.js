@@ -1,6 +1,6 @@
-import CartProduct from './CartProduct.js'; 
-import { settings, select,classNames,templates } from '../settings.js';
+import { settings, select, classNames ,templates } from '../settings.js';
 import utils from '../utils.js';
+import CartProduct from './CartProduct.js'; 
 class Cart {
   constructor(element){
     const thisCart = this;
@@ -50,8 +50,8 @@ class Cart {
     thisCart.dom.productList.appendChild(generatedDOM);
     thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
 
-    console.log('thisCard products', thisCart.products);
-    console.log('adding product', menuProduct);
+    // console.log('thisCard products', thisCart.products);
+    // console.log('adding product', menuProduct);
     thisCart.update();
   }
   update(){
@@ -63,19 +63,21 @@ class Cart {
 
 
     for(let product of thisCart.products ){
-      thisCart.totalNumber+=product.amount;
-      thisCart.subtotalPrice+=product.price;
+      thisCart.totalNumber += product.amount;
+      thisCart.subtotalPrice += product.price;
     }
       
-    if (thisCart.subtotalPrice) {
+    if (thisCart.subtotalPrice != 0) {
       thisCart.totalPrice = thisCart.subtotalPrice + deliveryFee;
-      thisCart.dom.deliveryFee.innerHTML = deliveryFee;
+      // thisCart.dom.deliveryFee.innerHTML = deliveryFee;
     } else {
       thisCart.totalPrice = 0;
+      // thisCart.deliveryFee.innerHTML = 0;
     }
     thisCart.dom.deliveryFee.innerHTML = deliveryFee;
     thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
     thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
+    
       
 
       
