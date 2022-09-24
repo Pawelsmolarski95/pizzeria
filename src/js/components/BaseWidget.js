@@ -1,10 +1,10 @@
 // import { settings } from '../settings.js';
 class BaseWidget{
-  constructor(wraperElement, initialValue){
+  constructor(wrapperElement, initialValue){
     const thisWidget = this;
 
     thisWidget.dom = {};
-    thisWidget.dom.wraper = wraperElement;
+    thisWidget.dom.wrapper = wrapperElement;
 
     thisWidget.correctValue = initialValue;
   }
@@ -36,7 +36,7 @@ class BaseWidget{
   }
   renderValue(){
     const thisWidget = this;
-    thisWidget.dom.wraper.innerHTML = thisWidget.value;
+    thisWidget.dom.wrapper.innerHTML = thisWidget.value;
   }
   announce(){ 
     const thisWidget = this;
@@ -44,7 +44,7 @@ class BaseWidget{
     const event = new CustomEvent('updated', {
       bubbles: true
     });
-    thisWidget.dom.wraper.dispatchEvent(event);
+    thisWidget.dom.wrapper.dispatchEvent(event);
   }
 }
 

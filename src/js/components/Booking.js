@@ -17,15 +17,18 @@ class Booking{
     const generatedHTML = templates.bookingWidget();
 
     thisBooking.dom = {};
+
     thisBooking.dom.wrapper = element;
+
     thisBooking.dom.wrapper.innerHTML = generatedHTML;
 
     thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
     thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
 
-    thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
-    thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
-   
+
+    thisBooking.dom.datePickerInput = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
+    thisBooking.dom.hourPickerInput = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
+    
   } 
   initWidgets(){
     const thisBooking = this;
@@ -33,8 +36,10 @@ class Booking{
     thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
     thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
 
-    thisBooking.datePickerElem = new DatePicker(thisBooking.dom.datePicker );
-    thisBooking.hourPickerElem = new HourPicker(thisBooking.dom.hourPicker);
+    thisBooking.datePickerElem = new DatePicker(thisBooking.dom.datePickerInput); 
+    thisBooking.hourPickerElem = new HourPicker(thisBooking.dom.hourPickerInput);
+    
+    
 
     thisBooking.dom.peopleAmount.addEventListener('click', console.log('peopleAmount'));
     thisBooking.dom.hoursAmount.addEventListener('click', console.log('hoursAmount'));
