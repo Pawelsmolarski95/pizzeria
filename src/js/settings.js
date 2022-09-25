@@ -50,6 +50,9 @@ export const select = {
     address: '[name="address"]',
     bookingOptions: '.bookig-options',
     starters: '.starters',
+    form: '.booking-form',
+    submitButton: '.btn-secondary',
+    
   },
 
   nav: {

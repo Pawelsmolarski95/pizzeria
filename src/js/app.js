@@ -25,7 +25,7 @@ const app = {
     thisApp.activePage(pageMatchingHash);
 
     
-    console.log(idFromHash);
+    
     for(let link of thisApp.navLinks){
       link.addEventListener('click', function(event){
         const clickedElement = this;
@@ -57,7 +57,7 @@ const app = {
   },
   initMenu: function(){
     const thisApp = this;
-    // console.log('thisApp.data:', thisApp.data);
+    
     for(let productData in thisApp.data.products){
       new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
     }
@@ -104,7 +104,6 @@ const app = {
     thisApp.initPages();
     thisApp.initData();
     thisApp.initCart();
-    
     thisApp.initBooking();
       
   },

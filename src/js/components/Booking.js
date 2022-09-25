@@ -3,7 +3,7 @@ import AmountWidget from '../components/AmountWidget.js';
 import DatePicker from '../components/DatePicker.js';
 import HourPicker from '../components/HourPicker.js';
 import utils from '../utils.js';
-// import utils from '../utils.js';
+
 class Booking{
   constructor(element) {
     const thisBooking = this;
@@ -13,7 +13,7 @@ class Booking{
     thisBooking.initWidgets();
     thisBooking.getData();
     thisBooking.selectedTable = 0;
-
+    thisBooking.starters = [];
   
   }
   getData(){
@@ -168,6 +168,13 @@ class Booking{
 
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
     thisBooking.dom.floor = thisBooking.dom.wrapper.querySelector(select.widgets.floorPlan);
+    thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
+    thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.address);
+    thisBooking.dom.form = thisBooking.dom.wrapper.querySelector(select.booking.form);
+    thisBooking.dom.submitButton = thisBooking.dom.wrapper.querySelector(select.booking.submitButton);
+    thisBooking.dom.starters = thisBooking.dom.wrapper.querySelector(select.booking.starters);
+
+    
 
 
 
@@ -176,28 +183,29 @@ class Booking{
   } 
   initTables(){
     const thisBooking = this;
-    const allTables = document.querySelectorAll('table');
-    console.log(allTables);
     const clicked = event.target;
+    const allTables = clicked.offsetParent.querySelectorAll('.table.selected');
+    console.log(allTables);
+    
     console.log(clicked);
     if(clicked.classList.contains('table')) {
       if(!clicked.classList.contains(classNames.booking.tableBooked)){
         const clickedTableId = clicked.getAttribute('data-table');
 
         if(!clicked.classList.contains(classNames.booking.tableSelected)){
-          // allTables.classList.remove(classNames.booking.tableSelected);
+          
+          for(let table of allTables){
+            table.classList.remove('selected');
+          }
           clicked.classList.add(classNames.booking.tableSelected);
           thisBooking.selectedTable = clickedTableId;
-
-          // const allTables = document.querySelectorAll('table');
 
         } else {
           clicked.classList.remove(classNames.booking.tableSelected);
           thisBooking.selectedTable = 0;
-          // window.alert('Ten stolik jest juz zarezerwowany, proszę wybrać inny');
         }
       } else {
-        window.alert('Ten stolik jest zarezerwowany, proszę wybrać inny');
+        window.alert('This table is already booked');
       }
     }  
   }
@@ -221,7 +229,64 @@ class Booking{
     thisBooking.dom.floor.addEventListener('click', function(event){
       thisBooking.initTables(event);
     });
+  
+    // for(let i = 0; i < thisBooking.dom.starters.lenght; i++ ){
+    thisBooking.dom.starters.addEventListener('click', function(event){
+      
+      const clickedStarter = event.target;
+      if(clickedStarter.type == 'checkbox'){
+        if(clickedStarter.checked){
+          thisBooking.starters.push(clickedStarter.value);  
+        } else {
+          thisBooking.starters.splice(thisBooking.starters.indexOf(clickedStarter.value),1);
+        }
+      }
+    });
+  
+    thisBooking.dom.submitButton.addEventListener('click', function(event){
+      event.preventDefault();
+      thisBooking.sendBooking();
+    });
+
+    console.log(thisBooking.starters);
+    // }
   }
+
+  sendBooking(){
+    const thisBooking = this; 
+    const url = settings.db.url + '/' + settings.db.booking ;
+    const payload = {
+      
+      'date': thisBooking.datePicker.value,
+      'hour': thisBooking.hourPicker.value,
+      'table': parseInt(thisBooking.selectedTable),
+      'duration': parseInt(thisBooking.hoursAmount.value),
+      'ppl': parseInt(thisBooking.peopleAmount.value),
+      'starters': thisBooking.starters,
+      'phone': thisBooking.dom.phone.value,
+      'address': thisBooking.dom.address.value
+    };
+    console.log('payload', payload);
+   
+    const options =  {
+      method:'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload)
+    };
+    fetch(url, options)
+      .then(function(response){
+        return response.json();
+      })
+      .then(function(parsedResponse){
+        console.log('do API ', parsedResponse);
+      });
+
+    thisBooking.makeBooked(payload.date, payload.hour, payload.table, payload.duration);
+    thisBooking.updateDOM();
+  }
+
 }
  
 
