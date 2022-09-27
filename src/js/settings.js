@@ -58,6 +58,7 @@ export const select = {
   nav: {
     links: '.main-nav a',
     boxes: '.box__link',
+    
   },
   cart: {
     productList: '.cart__order-summary',
@@ -121,7 +122,7 @@ export const settings = {
     tableIdAttribute: 'data-table',
   },
   db: {
-    url: '//localhost:3131',
+    url: '//' + window.location.hostname + (window.location.hostname=='localhost' ? ':3131' : ''),
     products: 'products',
     orders: 'orders',
     booking: 'bookings',
@@ -134,6 +135,7 @@ export const settings = {
 };
 
 export const templates = {
+  homeContainer: Handlebars.compile(document.querySelector(select.templateOf.home).innerHTML),
   menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
   bookingWidget: Handlebars.compile(document.querySelector(select.templateOf.bookingWidget).innerHTML),

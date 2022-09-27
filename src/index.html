@@ -64,7 +64,7 @@
   </header>
   <div id="pages">
     <section id="home">
-      <div id="home-wraper" class="home container"></div>
+      <div id="home-elem" class="home-wrapper container"></div>
     </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
@@ -75,83 +75,111 @@
   </div>
     <script id="template-home-widget" type="text/x-handlebars-template">
       <section class="top-boxes">
-        <div class="top__boxes__row">
-          <div class="top__boxes__row order__image">
-            <img src="/assets/pizza-1.jpg" alt="piiza-order" >
-            <a href="#order"  class="box__links">
-              <h1>Order online</h1>
-            </a>
-          </div>
-          <div class="top__boxes__row booking__image">
-            <img src="/assets/pizza-2.jpg" alt="booking-table" >
-            <a href="#booking" class="box__links">
+        <div class="box-main">
+          <div class="boxes-top">
+            <div class="boxes">
+              <img src="./pizza-1.jpg" alt="">
+              <a href="#order"  class="box__link">
+                <h1>Order online</h1>
+                <p>Delicious food delivery in your door </p>
+              </a>
+            </div>
+            <div class="boxes">
+              <img src="./pizza-2.jpg" alt="">
+            <a href="#booking" class="box__link">
               <h1>Book a table</h1>
+              <p>Book a table without leaving your home</p>
             </a>
+            </div>
           </div>
-          <div class="top__boxes__opening">
+          <div class="box-opening">
             <h3 class="opening-box">Opening hours:</h3>
-          <h5 class="opening-hours">Tue-Sun, 12PM-12AM</h5>
+            <h5 class="opening-hours">Tue-Sun, 12PM-12AM</h5>
           </div>
         </div>
       </section>
       <section class="carousel">
-        <div class="carousel-main">
+        <div class="main-carousel">
           <div class="carousel-cell">
-            <img src="/assets/pizza-3.jpg" alt="meeting">
+            <img src="./pizza-3.jpg" alt="meeting">
             <div class="inside-carosusel-text">
               <h3>Lorem Ipsum</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              <p>- Margaret Osborne</p>
             </div>
           </div>
           <div class="carousel-cell">
-            <img src="/assets/pizza-4.jpg" alt="booking">
+            <img src="./pizza-3.jpg" alt="booking">
             <div class="inside-carosusel-text">
               <h3>Lorem Ipsum</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              <p>- Margaret Osborne</p>
             </div>
           </div>
           <div class="carousel-cell">
-            <img src="/assets/pizza-5.jpg" alt="pizza">
+            <img src="./pizza-3.jpg" alt="pizza">
             <div class="inside-carosusel-text">
               <h3>Lorem Ipsum</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              <p>- Margaret Osborne</p>
             </div>
           </div>
         </div>
       </section>
       <section class="gallery">
-        <div class="main-galerry">
-          <div>
-            <img src="/assets/pizza-6.jpg" alt="" >
-            <i class="fas fa-heart"></i>
-            <i class="fas fa-share-alt"></i>
+        <div class="main-gallery">
+          <div class="row-gallery">
+            <div class="main-gallery-inside">
+              <img src="./pizza-4.jpg" alt="">
+              <div class="i-gallery">
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-share-alt"></i>
+              </div>
+            </div>
+            <div class="main-gallery-inside">
+              <img src="./pizza-5.jpg" alt="">
+              <div class="i-gallery">
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-share-alt"></i>
+              </div>
+            </div>
+            <div class="main-gallery-inside">
+              <img src="./pizza-6.jpg" alt="">
+              <div class="i-gallery">
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-share-alt"></i>
+              </div>
+            </div>
           </div>
-          <div>
-            <img src="/assets/pizza-7.jpg" alt="" >
-            <i class="fas fa-heart"></i>
-            <i class="fas fa-share-alt"></i>
-          </div>
-          <div>
-            <img src="/assets/pizza-8.jpg" alt="" >
-            <i class="fas fa-heart"></i>
-            <i class="fas fa-share-alt"></i>
-          </div>
-          <div>
-            <img src="/assets/pizza-9.jpg" alt="" >
-            <i class="fas fa-heart"></i>
-            <i class="fas fa-share-alt"></i>
-          </div>
-          <div>
-            <img src="/assets/pizza-1.jpg" alt="" >
-            <i class="fas fa-heart"></i>
-            <i class="fas fa-share-alt"></i>
-          </div>
-          <div>
-            <img src="/assets/pizza-2.jpg" alt="" >
-            <i class="fas fa-heart"></i>
-            <i class="fas fa-share-alt"></i>
+          <div class="row-gallery">
+            <div class="main-gallery-inside">
+              <img src="./pizza-7.jpg" alt="">
+              <div class="i-gallery">
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-share-alt"></i>
+              </div>
+            </div>
+            <div class="main-gallery-inside">
+              <img src="./pizza-8.jpg" alt="">
+              <div class="i-gallery">
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-share-alt"></i>
+              </div>
+            </div>
+            <div class="main-gallery-inside">
+              <img src="./pizza-9.jpg" alt="">
+              <div class="i-gallery">
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-share-alt"></i>
+              </div>
+            </div>
           </div>
         </div>
+        <footer>
+          <a href="#">
+            <h4>View more on Instagram</h4><i class="fab fa-instagram"></i>
+          </a>
+        </footer>
       </section>
     </script>
     <script id="template-cart-product" type="text/x-handlebars-template">
@@ -321,15 +349,7 @@
           </div>
         </form>
       </div>
-      <footer>
-        <a href="#">
-          <h4>View more on Instagram</h4>
-          <i class="fab fa-instagram"></i>
-        </a>
-      </footer>
     </script>
-  
-    
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
