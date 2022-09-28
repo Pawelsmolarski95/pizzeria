@@ -26,6 +26,7 @@ class CartProduct {
       remove: element.querySelector(select.cartProduct.remove),
     };
     console.log(thisCartProduct);
+    thisCartProduct.dom.wrapper = element;
   }
   initAmountWidget(){
     const thisCartProduct = this;
@@ -36,7 +37,7 @@ class CartProduct {
       thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount;
         
       thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
-
+      
     });
   }
   remove(){

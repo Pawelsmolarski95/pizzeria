@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import {select, templates, classNames } from '../settings.js';
 import utils from '../utils.js';
 import AmountWidget from './AmountWidget.js';
@@ -83,7 +84,7 @@ class Product{
          
     // set price to default price
     let price = thisProduct.data.price;
-    // console.log(price);
+    console.log(price);
     // for every category (param)...
     for(let paramId in thisProduct.data.params) {
       // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
@@ -96,8 +97,7 @@ class Product{
         const option = param.options[optionId];
           
         const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
-        const optionImage = thisProduct.imageWrapper.querySelector(
-          `.${paramId}-${optionId}`);
+        const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
 
         // check if there is param with a name of paramId in formData and if it includes optionId
         if(optionSelected) {
@@ -106,13 +106,11 @@ class Product{
             // add option price to price variable
             price+=option.price;
           }
-        } else {
+        } else if(option.default == true) {
           // check if the option is default
-          if(option.default) {
-            price -= option.price;
+            price = option.price;
           }
-        }
-         
+        
         if(optionImage) {
           if(optionSelected){
             optionImage.classList.add(classNames.menuProduct.imageVisible);
@@ -121,14 +119,16 @@ class Product{
           }
         }
       } 
-    }      
+    }
+    //multiply price by amount 
+    price *= thisProduct.amountWidget.value;     
     // proceSingle 
     thisProduct.priceSingle = price;
 
-    //multiply price by amount 
-    price *= thisProduct.amountWidget.value;
+    
     // update calculated price in the HTML
     thisProduct.priceElem.innerHTML = price;
+    thisProduct.imageWrapper.innerHTML;
       
   }
   initAmountWidget(){
@@ -165,7 +165,9 @@ class Product{
         
     };
     return productSummary;
+   
   }
+  
   prepareCartProductParams(){
     const thisProduct = this;
     const formData = utils.serializeFormToObject(thisProduct.form);
